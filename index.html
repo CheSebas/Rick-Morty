@@ -1,11 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" class="h-full">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="./output.css">
+    <title>Proyecto en Equipo</title>
 </head>
-<body>
-    
+
+<body class="flex flex-col min-h-screen bg-gray-50">
+    <!-- Espacio para  (header y main) -->
+    <div class="flex-grow">
+        <!--Todo el contenido aquí-->
+
+    </div>
+    <!--div con barras de busquedas-->
+    <div>
+
+    </div>
+    <!--div con cards-->
+    <div class="flex flex-col item-center justify-center w-full h-[200px] p-4">
+        <a href="#" class="grid grid-cols-2 items-center bg-white border border-gray-200 rounded-lg shadow-sm md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+            <img class="object-cover w-50 rounded-t-lg h-50 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="https://irs.www.warnerbros.com/gallery-v2-tablet-png/tv/media/ajax/fieldytvideos/und/form-xywbaoxkllspz5edyj9y7zz5hofem50rfdb-qie3ka/803_1_highres.png"
+                alt="">
+            <div class="flex flex-col justify-between p-4 leading-normal text-green-600">
+                <h4 class="pb-4"><strong>Nombre</strong></h4>
+                <p>Estado</p>
+                <p>Genero</p>
+                <p>Especie</p>
+            </div>
+        </a>
+    </div>
+    <!--botones atras adelante-->
+    <div class=" flex justify-between m-2">
+        <button class="bg-cyan-300 px-10 m-2 p-1 rounded-2xl hover:bg-cyan-400"><--</button>
+        <button class="bg-cyan-300 px-10 m-2 p-1 rounded-2xl hover:bg-cyan-400">--></button>
+    </div>
+    <!-- TU FOOTER (siempre abajo) -->
+    <footer class="bg-black/90 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <!-- Logo/Marca -->
+                <div class="mb-4 md:mb-0">
+                    <span class="text-xl font-bold">Síguenos</span>
+                    </di>
+                    <!-- Redes Sociales -->
+                    <div class="mt-4 md:mt-0 flex gap-4">
+                        <a href="#" class="hover:text-gray-300 transition">FB</a>
+                        <a href="#" class="hover:text-gray-300 transition">IG</a>
+                        <a href="#" class="hover:text-gray-300 transition">TW</a>
+                    </div>
+                </div>
+
+                <!-- Derechos de autor -->
+                <div class="mt-6 pt-6 border-t border-gray-700 text-center text-sm text-gray-400">
+                    <p>&copy; 2023 Nombre del Proyecto. Todos los derechos reservados.</p>
+                </div>
+            </div>
+    </footer>
 </body>
+
 </html>
