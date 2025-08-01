@@ -61,6 +61,7 @@
     <div
       class="max-w-4xl mx-auto mt-8 px-4 flex flex-col gap-4 md:flex-row md:items-center md:justify-between"
     >
+      <h2 class="text-2xl font-bold text-green-400 mb-2">Personajes</h2>
       <!-- Input -->
       <input
         type="text"
@@ -135,6 +136,107 @@
       >
         Siguiente<i class="fa-solid fa-arrow-right ml-2"></i>
       </button>
+    </div>
+
+    <!-- Location Section -->
+    <div
+      id="contLocation"
+      class="border-2 border-green-600 rounded-lg grid grid-cols-1 lg:grid-cols-2 p-4 gap-4 mt-6 mb-10 mx-4 bg-gray-800"
+    >
+      <div
+        id="contOptionsLoc"
+        class="flex lg:flex-col justify-center items-center gap-4"
+      >
+        <h2 class="text-2xl font-bold text-green-400 mb-2">Ubicaciones</h2>
+        <div
+          id="locationList"
+          class="flex flex-wrap gap-2 justify-center"
+        ></div>
+      </div>
+
+      <section class="border border-gray-600 rounded-lg bg-gray-900 p-4">
+        <div
+          id="residentsContainer"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+        >
+          <!-- Personajes se renderizan aquí -->
+        </div>
+      </section>
+
+      <!-- <section
+        class="contCardsLoc border border-gray-600 rounded-lg bg-gray-900 p-4"
+      >
+        <div
+          id="cardsLocation"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+        >
+          <div class="flex justify-center items-center text-gray-400">
+            card1-segunLocation
+          </div>
+        </div>
+
+        <div class="flex justify-center gap-6 mt-6">
+          <button
+            id="prevBtnLocation"
+            class="bg-green-500 hover:bg-green-600 text-black font-bold py-2 px-6 rounded-xl disabled:opacity-50"
+          >
+            <i class="fa-solid fa-arrow-left mr-2"></i>Anterior
+          </button>
+          <button
+            id="nextBtnLocation"
+            class="bg-green-500 hover:bg-green-600 text-black font-bold py-2 px-6 rounded-xl disabled:opacity-50"
+          >
+            Siguiente<i class="fa-solid fa-arrow-right ml-2"></i>
+          </button>
+        </div>
+      </section> -->
+    </div>
+
+    <!-- Episode Section -->
+    <div
+      id="contEpisode"
+      class="border-2 border-green-600 rounded-lg grid grid-cols-1 lg:grid-cols-2 p-4 gap-4 mt-6 mb-10 mx-4 bg-gray-800"
+    >
+      <div
+        id="contOptionsEp"
+        class="flex lg:flex-col justify-center items-center gap-4"
+      >
+        <h2 class="text-2xl font-bold text-green-400 mb-2">Episodios</h2>
+        <a
+          href="#"
+          class="bg-green-600 w-32 text-center text-black font-semibold py-2 px-4 rounded-2xl hover:bg-green-500 transition"
+        >
+          Episodios
+        </a>
+      </div>
+
+      <section
+        class="contCardsLoc border border-gray-600 rounded-lg bg-gray-900 p-4"
+      >
+        <div
+          id="cardsLocation"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+        >
+          <div class="flex justify-center items-center text-gray-400">
+            card1-segunLocation
+          </div>
+        </div>
+
+        <div class="flex justify-center gap-6 mt-6">
+          <button
+            id="prevBtnLocation"
+            class="bg-green-500 hover:bg-green-600 text-black font-bold py-2 px-6 rounded-xl disabled:opacity-50"
+          >
+            <i class="fa-solid fa-arrow-left mr-2"></i>Anterior
+          </button>
+          <button
+            id="nextBtnLocation"
+            class="bg-green-500 hover:bg-green-600 text-black font-bold py-2 px-6 rounded-xl disabled:opacity-50"
+          >
+            Siguiente<i class="fa-solid fa-arrow-right ml-2"></i>
+          </button>
+        </div>
+      </section>
     </div>
 
     <!-- Footer -->

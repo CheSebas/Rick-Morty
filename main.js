@@ -1,5 +1,7 @@
+// Personajes
 let currentPage = 1;
 let allCharacters = [];
+const residentsPerPage = 5;
 
 const fetchCharacters = async (page = 1) => {
   const res = await fetch(
@@ -103,4 +105,61 @@ window.addEventListener("DOMContentLoaded", () => {
 document.getElementById("toggleFilters").addEventListener("click", () => {
   const container = document.getElementById("filtersContainer");
   container.classList.toggle("hidden");
+});
+
+// Location
+const fetchLocations = async () => {
+  const res = await fetch("https://rickandmortyapi.com/api/location");
+  const data = await res.json();
+  renderLocations(data.results);
+};
+
+const renderLocations = (locations) => {
+  const container = document.getElementById("locationList");
+  container.innerHTML = "";
+
+  locations.forEach((loc) => {
+    const btn = document.createElement("button");
+    btn.textContent = loc.name;
+    btn.className =
+      "bg-green-700 hover:bg-green-500 text-black font-bold py-1 px-3 rounded-lg text-sm";
+    btn.addEventListener("click", () => showResidents(loc.residents));
+    container.appendChild(btn);
+  });
+};
+
+const showResidents = async (residentUrls) => {
+  const container = document.getElementById("residentsContainer");
+  container.innerHTML = "";
+
+  if (residentUrls.length === 0) {
+    container.innerHTML =
+      "<p class='text-gray-400 col-span-full text-center'>Sin residentes.</p>";
+    return;
+  }
+
+  const promises = residentUrls.map((url) =>
+    fetch(url).then((res) => res.json())
+  );
+  const characters = await Promise.all(promises);
+
+  characters.forEach((char) => {
+    const card = document.createElement("div");
+    card.className =
+      "bg-white text-black rounded-lg shadow-md overflow-hidden hover:scale-105 transition-transform";
+    card.innerHTML = `
+      <img src="${char.image}" alt="${char.name}" class="w-full h-56 object-cover" />
+      <div class="p-4 space-y-1">
+        <h2 class="text-xl font-bold text-green-700">${char.name}</h2>
+        <p><strong>Estado:</strong> ${char.status}</p>
+        <p><strong>Género:</strong> ${char.gender}</p>
+        <p><strong>Especie:</strong> ${char.species}</p>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+};
+
+window.addEventListener("DOMContentLoaded", () => {
+  fetchLocations();
 });
