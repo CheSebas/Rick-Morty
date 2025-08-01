@@ -1,7 +1,6 @@
 // Personajes
 let currentPage = 1;
 let allCharacters = [];
-const residentsPerPage = 5;
 
 const fetchCharacters = async (page = 1) => {
   const res = await fetch(
