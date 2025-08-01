@@ -7,46 +7,44 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="main.js" defer></script>
   </head>
-  <body>
-    <header class="flex items-center justify-between px-3 bg-black py-2">
+  <body class="bg-gray-900 text-white">
+    <!-- Header -->
+    <header class="flex items-center justify-between px-4 bg-black py-3">
       <img
         src="https://i.pinimg.com/474x/88/b5/f6/88b5f6ab99941a7d071c11d27c4501c1.jpg"
-        alt=""
         class="size-16 rounded-full"
       />
       <img
         src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Rick_and_Morty.svg/800px-Rick_and_Morty.svg.png"
-        alt=""
         class="h-14"
       />
       <svg
         xmlns="http://www.w3.org/2000/svg"
+        class="size-10 bg-green-500 p-2 rounded cursor-pointer"
         fill="none"
         viewBox="0 0 24 24"
-        stroke-width="1.5"
         stroke="currentColor"
-        class="size-14 bg-[#89e23b] rounded"
       >
         <path
           stroke-linecap="round"
           stroke-linejoin="round"
-          d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+          stroke-width="1.5"
+          d="M4 6h16M4 12h16m-16 6h16"
         />
       </svg>
     </header>
+
     <!-- Hero -->
     <section
-      class="relative h-screen flex items-center justify-center overflow-hidden"
+      class="relative h-[60vh] flex items-center justify-center overflow-hidden"
     >
       <div class="absolute inset-0 z-0">
         <img
           id="hero-image"
           src="https://i.pinimg.com/originals/6b/d8/2e/6bd82e272f3f35439634e546deb732eb.png"
-          alt="Hero"
           class="w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-100"
         />
       </div>
-
       <div class="z-10 text-center px-4">
         <h1 class="text-4xl md:text-6xl font-bold drop-shadow-lg text-white">
           Bienvenido a mi sitio
@@ -54,5 +52,56 @@
         <p class="mt-4 text-xl md:text-2xl">Descubre más abajo</p>
       </div>
     </section>
+
+    <!-- Search bar -->
+    <div class="max-w-xl mx-auto mt-8">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Buscar personaje..."
+        class="w-full p-3 rounded-lg border border-gray-300 text-black focus:outline-none focus:ring-2 focus:ring-green-500"
+      />
+    </div>
+
+    <!-- Cards -->
+    <section
+      id="cards-container"
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-6 mt-6"
+    ></section>
+
+    <!-- Navegación -->
+    <div class="flex justify-center gap-6 mt-4 mb-10">
+      <button
+        id="prevBtn"
+        class="bg-green-500 hover:bg-green-600 text-black font-bold py-2 px-6 rounded-xl disabled:opacity-50"
+      >
+        &larr; Anterior
+      </button>
+      <button
+        id="nextBtn"
+        class="bg-green-500 hover:bg-green-600 text-black font-bold py-2 px-6 rounded-xl disabled:opacity-50"
+      >
+        Siguiente &rarr;
+      </button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-8">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div>
+            <h2 class="text-lg font-semibold">Síguenos</h2>
+            <div class="flex space-x-4 mt-2">
+              <a href="#" class="hover:text-green-400">FB</a>
+              <a href="#" class="hover:text-green-400">IG</a>
+              <a href="#" class="hover:text-green-400">TW</a>
+            </div>
+          </div>
+          <div class="text-sm text-gray-400 mt-6 md:mt-0">
+            &copy; 2025 Rick and Morty Fans. Todos los derechos reservados.
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

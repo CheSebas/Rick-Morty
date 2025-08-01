@@ -1,5 +1,63 @@
+let currentPage = 1;
+let allCharacters = [];
+
+const fetchCharacters = async (page = 1) => {
+  const res = await fetch(
+    `https://rickandmortyapi.com/api/character?page=${page}`
+  );
+  const data = await res.json();
+  allCharacters = data.results;
+  renderCards(allCharacters);
+  document.getElementById("prevBtn").disabled = !data.info.prev;
+  document.getElementById("nextBtn").disabled = !data.info.next;
+};
+
+const renderCards = (characters) => {
+  const container = document.getElementById("cards-container");
+  container.innerHTML = "";
+
+  characters.forEach((char) => {
+    const card = document.createElement("div");
+    card.className =
+      "bg-white text-black rounded-lg shadow-md overflow-hidden hover:scale-105 transition-transform";
+    card.innerHTML = `
+      <img src="${char.image}" alt="${char.name}" class="w-full h-56 object-cover" />
+      <div class="p-4 space-y-1">
+        <h2 class="text-xl font-bold text-green-700">${char.name}</h2>
+        <p><strong>Estado:</strong> ${char.status}</p>
+        <p><strong>Género:</strong> ${char.gender}</p>
+        <p><strong>Especie:</strong> ${char.species}</p>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+};
+
+document.getElementById("prevBtn").addEventListener("click", () => {
+  if (currentPage > 1) {
+    currentPage--;
+    fetchCharacters(currentPage);
+  }
+});
+
+document.getElementById("nextBtn").addEventListener("click", () => {
+  currentPage++;
+  fetchCharacters(currentPage);
+});
+
+document.getElementById("searchInput").addEventListener("input", (e) => {
+  const value = e.target.value.toLowerCase();
+  const filtered = allCharacters.filter((char) =>
+    char.name.toLowerCase().includes(value)
+  );
+  renderCards(filtered);
+});
+
+// Hero rotación
 window.addEventListener("DOMContentLoaded", () => {
-  let images = [
+  fetchCharacters();
+
+  const images = [
     "https://i.pinimg.com/originals/6b/d8/2e/6bd82e272f3f35439634e546deb732eb.png",
     "https://external-preview.redd.it/S56GfES9JvoqfWRsKcDKcKQQvw8cukgPicMjV6QDGqE.jpg?width=1080&crop=smart&auto=webp&s=1ce89742171b0f345b6020ad10dd52d735079ae0",
     "https://images7.alphacoders.com/133/thumb-1920-1335145.jpg",
@@ -8,17 +66,14 @@ window.addEventListener("DOMContentLoaded", () => {
   ];
 
   let current = 0;
-  let imgElement = document.getElementById("hero-image");
+  const imgElement = document.getElementById("hero-image");
 
   setInterval(() => {
     current = (current + 1) % images.length;
-
-    imgElement.style.opacity = 0;
-
-    imgElement.onload = () => {
-      imgElement.style.opacity = 1;
-    };
-
-    imgElement.src = images[current];
+    imgElement.classList.add("opacity-0");
+    setTimeout(() => {
+      imgElement.src = images[current];
+      imgElement.onload = () => imgElement.classList.remove("opacity-0");
+    }, 500);
   }, 4000);
 });
