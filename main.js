@@ -45,13 +45,35 @@ document.getElementById("nextBtn").addEventListener("click", () => {
   fetchCharacters(currentPage);
 });
 
-document.getElementById("searchInput").addEventListener("input", (e) => {
-  const value = e.target.value.toLowerCase();
-  const filtered = allCharacters.filter((char) =>
-    char.name.toLowerCase().includes(value)
-  );
+const applyFilters = () => {
+  const text = document.getElementById("searchInput").value.toLowerCase();
+  const status = document.getElementById("filterStatus").value.toLowerCase();
+  const gender = document.getElementById("filterGender").value.toLowerCase();
+  const species = document.getElementById("filterSpecies").value.toLowerCase();
+
+  const filtered = allCharacters.filter((char) => {
+    const matchName = char.name.toLowerCase().includes(text);
+    const matchStatus = !status || char.status.toLowerCase() === status;
+    const matchGender = !gender || char.gender.toLowerCase() === gender;
+    const matchSpecies =
+      !species || char.species.toLowerCase().includes(species);
+
+    return matchName && matchStatus && matchGender && matchSpecies;
+  });
+
   renderCards(filtered);
-});
+};
+
+document.getElementById("searchInput").addEventListener("input", applyFilters);
+document
+  .getElementById("filterStatus")
+  .addEventListener("change", applyFilters);
+document
+  .getElementById("filterGender")
+  .addEventListener("change", applyFilters);
+document
+  .getElementById("filterSpecies")
+  .addEventListener("input", applyFilters);
 
 // Hero rotación
 window.addEventListener("DOMContentLoaded", () => {
@@ -76,4 +98,9 @@ window.addEventListener("DOMContentLoaded", () => {
       imgElement.onload = () => imgElement.classList.remove("opacity-0");
     }, 500);
   }, 4000);
+});
+
+document.getElementById("toggleFilters").addEventListener("click", () => {
+  const container = document.getElementById("filtersContainer");
+  container.classList.toggle("hidden");
 });

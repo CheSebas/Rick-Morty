@@ -6,6 +6,10 @@
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="main.js" defer></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
   </head>
   <body class="bg-gray-900 text-white">
     <!-- Header -->
@@ -53,14 +57,62 @@
       </div>
     </section>
 
-    <!-- Search bar -->
-    <div class="max-w-xl mx-auto mt-8">
+    <!-- Search + Filters -->
+    <div
+      class="max-w-4xl mx-auto mt-8 px-4 flex flex-col gap-4 md:flex-row md:items-center md:justify-between"
+    >
+      <!-- Input -->
       <input
         type="text"
         id="searchInput"
         placeholder="Buscar personaje..."
-        class="w-full p-3 rounded-lg border border-gray-300 text-black focus:outline-none focus:ring-2 focus:ring-green-500"
+        class="w-full md:w-2/3 p-3 rounded-lg border border-gray-300 text-black focus:outline-none focus:ring-2 focus:ring-green-500"
       />
+
+      <!-- Botón de filtros -->
+      <div class="relative w-full md:w-auto">
+        <button
+          id="toggleFilters"
+          class="w-full md:w-auto bg-green-500 hover:bg-green-600 text-black font-semibold py-3 px-6 rounded-lg"
+        >
+          Filtros ▼
+        </button>
+
+        <!-- Filtros desplegables -->
+        <div
+          id="filtersContainer"
+          class="hidden absolute z-20 mt-2 bg-white text-black rounded-lg shadow-lg p-4 space-y-3 w-72"
+        >
+          <div>
+            <label class="block text-sm font-medium">Estado</label>
+            <select id="filterStatus" class="w-full p-2 mt-1 border rounded">
+              <option value="">Todos</option>
+              <option value="alive">Alive</option>
+              <option value="dead">Dead</option>
+              <option value="unknown">Unknown</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Género</label>
+            <select id="filterGender" class="w-full p-2 mt-1 border rounded">
+              <option value="">Todos</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="genderless">Genderless</option>
+              <option value="unknown">Unknown</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Especie</label>
+            <input
+              type="text"
+              id="filterSpecies"
+              class="w-full p-2 mt-1 border rounded"
+              placeholder="Ej: Human, Alien..."
+            />
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Cards -->
@@ -75,13 +127,13 @@
         id="prevBtn"
         class="bg-green-500 hover:bg-green-600 text-black font-bold py-2 px-6 rounded-xl disabled:opacity-50"
       >
-        &larr; Anterior
+        <i class="fa-solid fa-arrow-left mr-2"></i>Anterior
       </button>
       <button
         id="nextBtn"
         class="bg-green-500 hover:bg-green-600 text-black font-bold py-2 px-6 rounded-xl disabled:opacity-50"
       >
-        Siguiente &rarr;
+        Siguiente<i class="fa-solid fa-arrow-right ml-2"></i>
       </button>
     </div>
 
@@ -90,14 +142,20 @@
       <div class="max-w-6xl mx-auto px-4">
         <div class="flex flex-col md:flex-row justify-between items-center">
           <div>
-            <h2 class="text-lg font-semibold">Síguenos</h2>
+            <h2 class="text-green-400 font-semibold">Síguenos</h2>
             <div class="flex space-x-4 mt-2">
-              <a href="#" class="hover:text-green-400">FB</a>
-              <a href="#" class="hover:text-green-400">IG</a>
-              <a href="#" class="hover:text-green-400">TW</a>
+              <a href="#" class="hover:text-green-400">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="hover:text-green-400">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#" class="hover:text-green-400">
+                <i class="fab fa-twitter"></i>
+              </a>
             </div>
           </div>
-          <div class="text-sm text-gray-400 mt-6 md:mt-0">
+          <div class="text-sm text-green-400 mt-6 md:mt-0">
             &copy; 2025 Rick and Morty Fans. Todos los derechos reservados.
           </div>
         </div>
