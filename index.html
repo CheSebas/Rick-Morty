@@ -5,48 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="./main.js" defer></script>
+    <script src="main.js" defer></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
   </head>
-  <body>
-    <header class="flex items-center justify-between px-3 bg-black py-2">
+  <body class="bg-gray-900 text-white">
+    <!-- Header -->
+    <header class="flex items-center justify-between px-4 bg-black py-3">
       <img
         src="https://i.pinimg.com/474x/88/b5/f6/88b5f6ab99941a7d071c11d27c4501c1.jpg"
-        alt=""
         class="size-16 rounded-full"
       />
       <img
         src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Rick_and_Morty.svg/800px-Rick_and_Morty.svg.png"
-        alt=""
         class="h-14"
       />
       <svg
         xmlns="http://www.w3.org/2000/svg"
+        class="size-10 bg-green-500 p-2 rounded cursor-pointer"
         fill="none"
         viewBox="0 0 24 24"
-        stroke-width="1.5"
         stroke="currentColor"
-        class="size-14 bg-[#89e23b] rounded"
       >
         <path
           stroke-linecap="round"
           stroke-linejoin="round"
-          d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+          stroke-width="1.5"
+          d="M4 6h16M4 12h16m-16 6h16"
         />
       </svg>
     </header>
+
     <!-- Hero -->
     <section
-      class="relative h-screen flex items-center justify-center overflow-hidden"
+      class="relative h-[60vh] flex items-center justify-center overflow-hidden"
     >
       <div class="absolute inset-0 z-0">
         <img
           id="hero-image"
           src="https://i.pinimg.com/originals/6b/d8/2e/6bd82e272f3f35439634e546deb732eb.png"
-          alt="Hero"
           class="w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-100"
         />
       </div>
-
       <div class="z-10 text-center px-4">
         <h1 class="text-4xl md:text-6xl font-bold drop-shadow-lg text-white">
           Bienvenido a mi sitio
@@ -54,5 +56,210 @@
         <p class="mt-4 text-xl md:text-2xl">Descubre más abajo</p>
       </div>
     </section>
+
+    <!-- Search + Filters -->
+    <div
+      class="max-w-4xl mx-auto mt-8 px-4 flex flex-col gap-4 md:flex-row md:items-center md:justify-between"
+    >
+      <h2 class="text-2xl font-bold text-green-400 mb-2">Personajes</h2>
+      <!-- Input -->
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Buscar personaje..."
+        class="w-full md:w-2/3 p-3 rounded-lg border border-gray-300 text-black focus:outline-none focus:ring-2 focus:ring-green-500"
+      />
+
+      <!-- Botón de filtros -->
+      <div class="relative w-full md:w-auto">
+        <button
+          id="toggleFilters"
+          class="w-full md:w-auto bg-green-500 hover:bg-green-600 text-black font-semibold py-3 px-6 rounded-lg"
+        >
+          Filtros ▼
+        </button>
+
+        <!-- Filtros desplegables -->
+        <div
+          id="filtersContainer"
+          class="hidden absolute z-20 mt-2 bg-white text-black rounded-lg shadow-lg p-4 space-y-3 w-72"
+        >
+          <div>
+            <label class="block text-sm font-medium">Estado</label>
+            <select id="filterStatus" class="w-full p-2 mt-1 border rounded">
+              <option value="">Todos</option>
+              <option value="alive">Alive</option>
+              <option value="dead">Dead</option>
+              <option value="unknown">Unknown</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Género</label>
+            <select id="filterGender" class="w-full p-2 mt-1 border rounded">
+              <option value="">Todos</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="genderless">Genderless</option>
+              <option value="unknown">Unknown</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Especie</label>
+            <input
+              type="text"
+              id="filterSpecies"
+              class="w-full p-2 mt-1 border rounded"
+              placeholder="Ej: Human, Alien..."
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cards -->
+    <section
+      id="cards-container"
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-6 mt-6"
+    ></section>
+
+    <!-- Navegación -->
+    <div class="flex justify-center gap-6 mt-4 mb-10">
+      <button
+        id="prevBtn"
+        class="bg-green-500 hover:bg-green-600 text-black font-bold py-2 px-6 rounded-xl disabled:opacity-50"
+      >
+        <i class="fa-solid fa-arrow-left mr-2"></i>Anterior
+      </button>
+      <button
+        id="nextBtn"
+        class="bg-green-500 hover:bg-green-600 text-black font-bold py-2 px-6 rounded-xl disabled:opacity-50"
+      >
+        Siguiente<i class="fa-solid fa-arrow-right ml-2"></i>
+      </button>
+    </div>
+
+    <!-- Location Section -->
+    <div
+      id="contLocation"
+      class="border-2 border-green-600 rounded-lg grid grid-cols-1 lg:grid-cols-2 p-4 gap-4 mt-6 mb-10 mx-4 bg-gray-800"
+    >
+      <div
+        id="contOptionsLoc"
+        class="flex lg:flex-col justify-center items-center gap-4"
+      >
+        <h2 class="text-2xl font-bold text-green-400 mb-2">Ubicaciones</h2>
+        <div
+          id="locationList"
+          class="flex flex-wrap gap-2 justify-center"
+        ></div>
+      </div>
+
+      <section class="border border-gray-600 rounded-lg bg-gray-900 p-4">
+        <div
+          id="residentsContainer"
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 max-h-[500px] overflow-y-auto pr-2"
+        ></div>
+      </section>
+
+      <!-- <section
+        class="contCardsLoc border border-gray-600 rounded-lg bg-gray-900 p-4"
+      >
+        <div
+          id="cardsLocation"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+        >
+          <div class="flex justify-center items-center text-gray-400">
+            card1-segunLocation
+          </div>
+        </div>
+
+        <div class="flex justify-center gap-6 mt-6">
+          <button
+            id="prevBtnLocation"
+            class="bg-green-500 hover:bg-green-600 text-black font-bold py-2 px-6 rounded-xl disabled:opacity-50"
+          >
+            <i class="fa-solid fa-arrow-left mr-2"></i>Anterior
+          </button>
+          <button
+            id="nextBtnLocation"
+            class="bg-green-500 hover:bg-green-600 text-black font-bold py-2 px-6 rounded-xl disabled:opacity-50"
+          >
+            Siguiente<i class="fa-solid fa-arrow-right ml-2"></i>
+          </button>
+        </div>
+      </section> -->
+    </div>
+
+    <!-- Episode Section -->
+    <div
+      id="contEpisode"
+      class="border-2 border-green-600 rounded-lg grid grid-cols-1 lg:grid-cols-2 p-4 gap-4 mt-6 mb-10 mx-4 bg-gray-800"
+    >
+      <div
+        id="contOptionsEp"
+        class="flex lg:flex-col justify-center items-center gap-4"
+      >
+        <h2 class="text-2xl font-bold text-green-400 mb-2">Episodios</h2>
+        <a
+          href="#"
+          class="bg-green-600 w-32 text-center text-black font-semibold py-2 px-4 rounded-2xl hover:bg-green-500 transition"
+        >
+          Episodios
+        </a>
+      </div>
+
+      <section
+        class="contCardsLoc border border-gray-600 rounded-lg bg-gray-900 p-4"
+      >
+        <div
+          id="cardsLocation"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+        >
+          <div class="flex justify-center items-center text-gray-400">
+            card1-segunLocation
+          </div>
+        </div>
+
+        <div class="flex justify-center gap-6 mt-6">
+          <button
+            id="prevBtnLocation"
+            class="bg-green-500 hover:bg-green-600 text-black font-bold py-2 px-6 rounded-xl disabled:opacity-50"
+          >
+            <i class="fa-solid fa-arrow-left mr-2"></i>Anterior
+          </button>
+          <button
+            id="nextBtnLocation"
+            class="bg-green-500 hover:bg-green-600 text-black font-bold py-2 px-6 rounded-xl disabled:opacity-50"
+          >
+            Siguiente<i class="fa-solid fa-arrow-right ml-2"></i>
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-8">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div>
+            <h2 class="text-green-400 font-semibold">Síguenos</h2>
+            <div class="flex space-x-4 mt-2">
+              <a href="#" class="hover:text-green-400">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="hover:text-green-400">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#" class="hover:text-green-400">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </div>
+          </div>
+          <div class="text-sm text-green-400 mt-6 md:mt-0">
+            &copy; 2025 Rick and Morty Fans. Todos los derechos reservados.
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
